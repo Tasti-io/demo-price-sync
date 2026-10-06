@@ -1,0 +1,11 @@
+{
+  "name": "tasti-demo-price-sync",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Public demo: one price change across the till, three delivery apps and the website, checked after it lands.",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "check": "node scripts/selftest.mjs"
+  }
+}
