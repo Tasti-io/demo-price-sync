@@ -19,12 +19,9 @@ async function render() {
   const s = await api("/api/state");
   const rows = s.margins;
   if (!selected) {
-    // Open on the item that loses the most between the room and its worst app.
-    selected = rows.map((r) => {
-      const room = r.cells.square?.leftPct ?? 0;
-      const worst = Math.min(...SELL.filter((c) => r.cells[c]).map((c) => r.cells[c].leftPct));
-      return [r.itemId, room - worst];
-    }).sort((a, b) => b[1] - a[1])[0][0];
+    // Open on the item that leaves the least on any app: the one worth a look first.
+    selected = rows.map((r) => [r.itemId, Math.min(...SELL.filter((c) => c !== "square" && r.cells[c]).map((c) => r.cells[c].leftPct))])
+      .sort((a, b) => a[1] - b[1])[0][0];
   }
   const sel = rows.find((r) => r.itemId === selected);
   const cats = [...new Set(rows.map((r) => r.category))];

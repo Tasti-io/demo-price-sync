@@ -59,7 +59,7 @@ async function render() {
 
     <div class="card">
       <div class="card-head"><h2>Where a channel breaks the rule</h2>
-        ${priced.length ? `<a class="btn primary small" href="/change?fix=1">Fix these in one change</a>` : ""}</div>
+        ${priced.some((d) => d.kind === "under-policy" || d.kind === "over-policy") ? `<a class="btn primary small" href="/change?fix=1">Fix these in one change</a>` : ""}</div>
       ${priced.length
         ? `<ul class="list">${priced.map((d) => `<li><span>${policyLine(d)}</span><span class="kind bad">${esc(KIND[d.kind][0])}</span></li>`).join("")}</ul>`
         : `<div class="okbar" style="margin:14px 20px">Every price on every channel follows the rule.</div>`}

@@ -158,6 +158,7 @@ function stepFor(change, ch, active) {
 }
 
 function draw(change, active = null) {
+  if (!pending()) document.querySelector("nav.steps .badge")?.remove();
   if (!change) {
     $("main").innerHTML = `<div class="card"><div class="empty">Nothing is waiting for approval.<br><a class="btn primary" href="/change" style="margin-top:12px">Make a change</a></div></div>`;
     return;
