@@ -160,7 +160,7 @@ console.log("\nthe words");
 const pub = readdirSync(new URL("../public/", import.meta.url)).filter((f) => f.endsWith(".html"))
   .concat(readdirSync(new URL("../public/js/", import.meta.url)).map((f) => `js/${f}`))
   .map((f) => readFileSync(new URL(`../public/${f}`, import.meta.url), "utf8")).join("\n");
-check("no em dashes anywhere a visitor reads", ![pub, serverSrc].some((s) => s.includes("—")));
+check("no em dashes anywhere a visitor reads", ![pub, serverSrc].some((s) => s.includes("\u2014")));
 check("the pages say the channels are simulated", /simulated/i.test(pub));
 check("and that Harbour & Co is fictional", /fictional/i.test(pub));
 check("and never call what is left profit", /Not profit/.test(pub));
